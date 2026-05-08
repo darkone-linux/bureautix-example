@@ -1,3 +1,7 @@
 netboot/boot-response.json
 netboot/snowboot
+result
 .pre-commit*
+.direnv
+*.md
+*.qcow*

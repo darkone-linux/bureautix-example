@@ -211,6 +211,28 @@ rec {
     '';
   };
 
+  # QEMU VM for testing Bureautix interactively.
+  vm =
+    (securix.lib.mkTerminal {
+      name = "bureautix-vm";
+      edition = defaultEdition;
+      userSpecificModule = { };
+      vpnProfiles = { };
+      modules = [
+        ./common
+        ./common/vm.nix
+        {
+          securix = {
+            self.machine = {
+              hardwareSKU = "x280";
+              serialNumber = "000000";
+            };
+            graphical-interface.variant = "kde";
+          };
+        }
+      ];
+    }).system.config.system.build.vm;
+
   # { <serial number1>, <serial number2>, ... }
   terminals = mapAttrs (
     serial:
