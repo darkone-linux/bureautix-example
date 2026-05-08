@@ -5,3 +5,4 @@ result
 .direnv
 *.md
 *.qcow*
+vm-state

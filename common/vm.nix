@@ -4,11 +4,11 @@
 
 { lib, ... }:
 {
-  securix.filesystems.enable = lib.mkForce false;
-
-  securix.pam.u2f.enable = lib.mkForce false;
-
-  securix.admins.enable = lib.mkForce false;
+  securix = {
+    filesystems.enable = lib.mkForce false;
+    pam.u2f.enable = lib.mkForce false;
+    admins.enable = lib.mkForce false;
+  };
 
   users.users.bob = {
     isNormalUser = true;

@@ -212,8 +212,8 @@ rec {
   };
 
   # QEMU VM for testing Bureautix interactively.
-  vm =
-    (securix.lib.mkTerminal {
+  inherit
+    ((securix.lib.mkTerminal {
       name = "bureautix-vm";
       edition = defaultEdition;
       userSpecificModule = { };
@@ -221,6 +221,31 @@ rec {
       modules = [
         ./common
         ./common/vm.nix
+        {
+          securix = {
+            self.machine = {
+              hardwareSKU = "x280";
+              serialNumber = "000000";
+            };
+            graphical-interface.variant = "kde";
+          };
+        }
+      ];
+    }).system.config.system.build
+    )
+    vm
+    ;
+
+  # QEMU VM with TPM simulation via swtpm.
+  vm-tpm =
+    (securix.lib.mkTerminal {
+      name = "bureautix-vm-tpm";
+      edition = defaultEdition;
+      userSpecificModule = { };
+      vpnProfiles = { };
+      modules = [
+        ./common
+        ./common/vm-tpm.nix
         {
           securix = {
             self.machine = {
