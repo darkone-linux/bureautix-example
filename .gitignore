@@ -1,3 +1,6 @@
 netboot/boot-response.json
 netboot/snowboot
 .pre-commit*
+.direnv
+result
+vm-state
